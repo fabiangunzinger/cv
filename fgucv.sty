@@ -1,0 +1,76 @@
+% Colours
+\usepackage[dvipsnames, hyperref]{xcolor}
+
+% Colours from
+% colours: https://www.color-hex.com/color-palette/1038439
+% grays:  https://www.color-hex.com/color-palette/2280
+\definecolor{sectionColor}{HTML}{e15936}
+\definecolor{urlColor}{HTML}{1a80ac}
+\definecolor{roleColor}{HTML}{343d46}
+\definecolor{companyColor}{HTML}{4f5b66}
+\definecolor{textColor}{HTML}{575662}
+
+\usepackage{amssymb}
+\usepackage{enumitem} % Custom item spacing
+\usepackage{fontawesome} % Contact items
+\usepackage[T1]{fontenc} % Sans serif fonts
+\usepackage[left=1.75cm, right=1.75cm, top=1cm, bottom=1cm]{geometry}
+\usepackage[colorlinks, urlcolor=urlColor]{hyperref}
+\usepackage{lmodern} % Latin modern font
+\usepackage{setspace} % Custom spacing
+\usepackage{titlesec} % Section options
+\usepackage{xargs}
+\usepackage{xparse}
+
+% Font
+\renewcommand*\familydefault{\sfdefault}
+\newcommand{\titlesize}{\huge}
+\newcommand{\sectionSize}{\normalsize}
+\newcommand{\roleSize}{\normalsize}
+\newcommand{\companySize}{\footnotesize}
+\newcommand{\locperiodSize}{\footnotesize}
+\newcommand{\textSize}{\normalsize}
+
+% Spacing
+\setstretch{1.1} % Custom line spacing
+\newcommand{\eop}{\vspace{5pt}}
+
+% Items
+\newcommand{\myname}[1]{\noindent{\Huge\color{textColor}#1}\vspace{5pt}}
+\newcommand{\profile}[1]{\noindent{\normalsize \color{textColor} #1}}
+\newcommand{\contactitem}[3]{\noindent{\textSize \color{textColor}#1\space\href{#2}{#3}}}
+\newcommand{\mysection}[1]{\vspace{8pt}{\bf \sectionSize \color{sectionColor} \noindent #1}\vspace{4pt}}
+\newcommand{\role}[1]{\noindent {\bf \roleSize \color{roleColor} {#1}}}
+\newcommand{\company}[1]{{\bf \companySize \color{companyColor} {| #1}}}
+\newcommand{\location}[1]{{\bf \locperiodSize \color{companyColor} #1}}
+\newcommand{\period}[1]{{\bf \locperiodSize \color{companyColor} {| #1}}}
+\newcommand{\newitem}[4]{\role{#1} \company{#2}\IfValueT{#3}{\if\relax\detokenize{#3}\relax\else\location{#3} |\fi} \period{#4}\\}
+\newcommand{\desc}[1]{\noindent{\textSize \color{textColor} {#1}}}
+\newcommandx{\tasks}[5][2=, 3=, 4=, 5=]{{
+    \textSize
+    \color{textColor}    
+    % topsep=0pt removes extra spacing at top and bottom, before and after
+    % then set custom spacing separately for top and bottom.
+    \begin{itemize}[topsep=0pt, before=\vspace{0pt}, after=\eop,  leftmargin=15pt, itemsep=-5pt]
+        \renewcommand{\labelitemi}{\tiny$\blacksquare$}
+        \item #1
+        \IfValueT{#2}{\if\relax\detokenize{#2}\relax\else\item #2\fi}
+        \IfValueT{#3}{\if\relax\detokenize{#3}\relax\else\item #3\fi}
+        \IfValueT{#4}{\if\relax\detokenize{#4}\relax\else\item #4\fi}
+        \IfValueT{#5}{\if\relax\detokenize{#5}\relax\else\item #5\fi}
+    \end{itemize}
+}}
+\newcommand{\mynewlanguage}[2]{\noindent{\textSize \bf \color{roleColor} #1} {\small \color{textColor} (#2)} \quad}
+\newcommand{\skilltitle}[1]{{\textSize \bf \color{textColor} #1}}
+\newcommand{\skills}[1]{{\textSize \color{textColor} #1}}
+\newcommand{\skillgroup}[2]{
+\noindent
+\begin{minipage}[t]{0.3\textwidth}
+\raggedright
+\skilltitle{#1}
+\skills{#2}
+\end{minipage}%
+\hfill
+}
+
+
